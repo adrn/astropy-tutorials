@@ -6,6 +6,7 @@ from __future__ import division, print_function
 import os, sys
 
 # Third-party
+import matplotlib.pyplot as plt
 import numpy as np
 from scipy.optimize import leastsq
 import emcee
@@ -33,59 +34,63 @@ pixel_grid = np.arange(0,n_pix0).reshape(n_pix0,1)
 wavelength0 = wcs0.all_pix2world(pixel_grid,0)
 
 #reshape to row
-wavelength0 = wavelength.reshape(n_pix0)
+wavelength0 = wavelength0.reshape(n_pix0)
 
 ##Now we have wavelength and flux for 0th HDU/extension.
 
 
 # measure EW of Lithium line.
-idx = (wavelength > 6650) & (wavelength < 6750)
-Li_flux = flux[idx]
-Li_wvln = wavelength[idx]
+idx = (wavelength0 > 6690) & (wavelength0 < 6725)
+Li_flux = flux0[idx]
+Li_wvln = wavelength0[idx]
 
-# create lorentzian & gaussian functions
-# these should be hardcoded into astropy
+# create gaussian function (this should be built-in to astropy)
 def gaussian(x, mu, sigma):
     return 1. / np.sqrt(2*np.pi) / sigma * np.exp(-(x-mu)**2 / (2*sigma**2))
 
-def laurentzian(x, x0, gamma)
-    
-def model1(p, x):
-    """ One Gaussian + straight line model """
-    return p[0]*gaussian(x, p[1], p[2]) + p[3]*x + p[4]
+def model(p, x):
+    """ Gaussian + constant line """
+    return p[0]*gaussian(x, p[1], p[2]) + p[3]
 
-def model2(p, x):
-    """ Two Gaussians + straight line model """
-    return p[0]*gaussian(x,p[1],p[2]) + p[3]*gaussian(x,p[4],p[5]) + p[6]*x + p[7]
+def error_function(p, x, y):
+    """ Generic error function given a model and data, assuming 
+        no uncertainties 
+    """
+    return model(p, x) - y
 
-def error_function1(p, x, y):
-    return model1(p, x) - y
+leastsq_parameters, ier = leastsq(error_function, 
+                            [-0.01, 6705., 5., 0.], 
+                            args=(Li_wvln, Li_flux))
 
-def error_function2(p, x, y):
-    return model2(p, x) - y
-
-p_opt, ier = leastsq(error_function1, [-0.01, 6700., 5., 0., 0.], args=(Li_wvln, Li_flux))
-p_opt2, ier = leastsq(error_function2, [-0.01, 6700., 5., 0, 6710., 5., 0., 0.], args=(Li_wvln, Li_flux))
-
-fig,axes = subplots(2,1,figsize=(12,10))
-axes[0].plot(wavelength, flux, drawstyle="steps")
-axes[0].set_xlim(wavelength.min(), wavelength.max())
-axes[0].set_ylabel("Flux [{0}]".format(hdu.header["BUNIT"]), fontsize=20)
+fig,axes = plt.subplots(2,1,figsize=(12,10))
+axes[0].plot(wavelength0, flux0, drawstyle="steps")
+axes[0].set_xlim(wavelength0.min(), wavelength0.max())
+axes[0].set_ylabel("Flux [{0}]".format(hdu0.header["BUNIT"]), fontsize=20)
 axes[0].axvline(6708, color="red", linestyle="--")
 axes[0].xaxis.set_ticklabels([])
 
 # Zoomed in panel
-axes[1].plot(wavelength, flux, drawstyle="steps")
+axes[1].plot(wavelength0, flux0, drawstyle="steps")
 axes[1].set_xlim(6650, 6800)
 axes[1].set_ylim(-0.001, 0.01)
 axes[1].set_xlabel(r"Wavelength [$\AA$]", fontsize=20)
-axes[1].set_ylabel("Flux [{0}]".format(hdu.header["BUNIT"]), fontsize=20)
+axes[1].set_ylabel("Flux [{0}]".format(hdu0.header["BUNIT"]), fontsize=20)
 
 fig.subplots_adjust(hspace=0.05)
 
+fig,axes = plt.subplots(2,1,figsize=(10,12))
+fig.suptitle("Using scipy.optimize.leastsq")
 
-figure(figsize=(10,8))
-plot(Li_wvln, Li_flux, drawstyle="steps", color="k")
-plot(Li_wvln, model1(p_opt, Li_wvln), color="b")
-plot(Li_wvln, model2(p_opt2, Li_wvln), color="r")
-xlabel(r"Wavelength [$\AA$]", fontsize=20)
+# plot the individual model components
+axes[0].plot(Li_wvln, leastsq_parameters[0]*gaussian(Li_wvln, *leastsq_parameters[1:3]))
+axes[0].plot(Li_wvln, np.ones_like(Li_wvln)*leastsq_parameters[3])
+axes[0].set_xticklabels([])
+
+# plot the sum of the model components over the data
+axes[1].plot(Li_wvln, Li_flux, drawstyle="steps", color="k")
+print("Line center: {0:.2f}".format(leastsq_parameters[1]))
+axes[1].plot(Li_wvln, model(leastsq_parameters, Li_wvln), color="b", linewidth=2)
+axes[1].set_xlabel(r"Wavelength [$\AA$]", fontsize=20)
+fig.subplots_adjust(hspace=0.08)
+
+plt.show()
