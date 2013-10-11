@@ -32,7 +32,8 @@ if [ "$TRAVIS_PULL_REQUEST" = "false" ]; then
     cp -r html/* .
 
     # Delete the original location of the built files
-    rm -rf build
+    rm -rf html
+
     # We need to tell github this is not a Jekyll document
     touch .nojekyll
     git add .nojekyll
