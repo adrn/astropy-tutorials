@@ -9,7 +9,10 @@ language: python
 
 env:
   global:
-    secure: "D7IDvqBqXACCvggyikeP/5DcRNMht3U8zJL4B2+PEwk9uSGmPv2hFmN+khNusvjl1v1GPuw1Y+nxjYz/3rUbPYzBhjgasFIO7KLJIuyiMVD7OKxCQ5kHo2RsThNi6b+bwLh6fBJNmhadrypiNarbPkVkIw78urw1HpZdAAmPSDk="
+    # For astropy/astropy-tutorials:
+    #secure: "D7IDvqBqXACCvggyikeP/5DcRNMht3U8zJL4B2+PEwk9uSGmPv2hFmN+khNusvjl1v1GPuw1Y+nxjYz/3rUbPYzBhjgasFIO7KLJIuyiMVD7OKxCQ5kHo2RsThNi6b+bwLh6fBJNmhadrypiNarbPkVkIw78urw1HpZdAAmPSDk="
+    # For adrn/astropy-tutorials:
+    secure: "UFIwpaiyuwdRT8/Tv/bPsbjaNZ0zyREM2SnbXH0fejOGmlt0r4QxW0l43vW/w4jY2gLkfcYYUZcbAvE7BMM+PuO2gy+VIKs4x3I84vyTavgc4Cr6acAdsaNnbS3OZteApg8tQJH07hoic1VeMT9euVt14Z3pMUzjdKlrilLdQmI="
 
 branches:
   only:
