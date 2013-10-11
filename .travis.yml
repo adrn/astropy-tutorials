@@ -16,7 +16,8 @@ branches:
     - production
 
 before_install:
-  - pip install ipython[all]
+  - pip install ipython jinja2 pygments
+  - sudo apt-get install pandoc
 
 install:
   - make html
