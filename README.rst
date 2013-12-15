@@ -14,7 +14,7 @@ Each tutorial is essentially an `iPython notebook <http://ipython.org/notebook.h
 Procedure
 ---------
 
-*If you are unfamiliar with git, you should first get familiar with git and github. There are a number of resources available for learning git, but a good place to start is with the `github interactive tutorial <http://try.github.io/>`_. You should also get familiar with using pull requests and forks on github: https://help.github.com/articles/using-pull-requests *
+If you are unfamiliar with git, you should first get familiar with git and github. There are a number of resources available for learning git, but a good place to start is with the `github interactive tutorial <http://try.github.io/>`_. You should also get familiar with using pull requests and forks on github: https://help.github.com/articles/using-pull-requests
 
 To create and contribute a new tutorial, you will first need to fork the astropy-tutorials repository on github and clone this fork locally to your machine (replace <GITHUB USERNAME> with your github username)::
 
