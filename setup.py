@@ -68,7 +68,8 @@ class BuildTutorials(Command):
             with open(os.path.join(path,"metadata.yml")) as f:
                 meta = yaml.load(f.read())
 
-            if not meta["published"]:
+            published = meta.get("published", False)
+            if not published:
                 continue
 
             for filename in os.listdir(path):
