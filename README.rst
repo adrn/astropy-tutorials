@@ -37,9 +37,9 @@ Create a new notebook file, and write away! Remember to place any extra files us
 
 You will also need to create a tutorial metadata file in the same directory. The metadata file contains any extra information about the tutorial you may want to add and must be a `YAML <www.yaml.org>`_ file. YAML is a very simple, human readable markup language based on key-value pairs separater by a colon. This file must contain, at minimum, the following fields::
 
-    - author
-    - link_name (the name of the link which will appear in the list of tutorials)
-    - date (month year, e.g. 'July 2013')
+- author
+- link_name (the name of the link which will appear in the list of tutorials)
+- date (month year, e.g. 'July 2013')
 
 An example of one of these files can be found `here <https://github.com/adrn/astropy-tutorials/blob/master/tutorials/FITS-Header/metadata.yml>`_.
 
