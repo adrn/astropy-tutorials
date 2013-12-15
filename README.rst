@@ -35,7 +35,7 @@ All files used by the tutorial -- e.g., example data files, the iPython notebook
 
 Create a new notebook file, and write away! Remember to place any extra files used by the tutorial in the directory with the notebook file.
 
-You will also need to create a tutorial metadata file in the same directory. The metadata file contains any extra information about the tutorial you may want to add and must be a `YAML <www.yaml.org>`_ file. YAML is a very simple, human readable markup language based on key-value pairs separater by a colon. This file must contain, at minimum, the following fields::
+You will also need to create a tutorial metadata file in the same directory. The metadata file contains any extra information about the tutorial you may want to add and must be a `YAML <www.yaml.org>`_ file. YAML is a very simple, human readable markup language based on key-value pairs separater by a colon. This file must contain, at minimum, the following fields:
 
 - author
 - link_name (the name of the link which will appear in the list of tutorials)
