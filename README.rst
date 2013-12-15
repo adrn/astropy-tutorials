@@ -1,7 +1,7 @@
 Tutorials
 =========
 
-This repository contains tutorials for the [Astropy](http://astropy.org) project (also on [github](https://github.com/astropy/astropy)).
+This repository contains tutorials for the `Astropy <http://astropy.org>`_ project (also on `github <https://github.com/astropy/astropy>`_).
 
 Contributing
 ============
@@ -9,12 +9,12 @@ Contributing
 Overview
 --------
 
-Each tutorial is essentially an [iPython notebook](http://ipython.org/notebook.html) file. The notebooks are each saved in a separate directory within the `tutorials` subdirectory in this project. Let's look in [FITS-Header](https://github.com/astropy/astropy-tutorials/tree/master/tutorials/FITS-Header) as an example. There is a single iPython notebook file that contains the text and code for the tutorial, and a FITS file used in the tutorial. The notebook file is automatically run and converted into a static HTML page ([example](http://tutorials.astropy.org/FITS-header.html)), which is then displayed in the tutorial listing on http://tutorials.astropy.org.
+Each tutorial is essentially an `iPython notebook <http://ipython.org/notebook.html>`_ file. The notebooks are each saved in a separate directory within the `tutorials` subdirectory in this project. Let's look in `FITS-Header <https://github.com/astropy/astropy-tutorials/tree/master/tutorials/FITS-Header>`_ as an example. There is a single iPython notebook file that contains the text and code for the tutorial, and a FITS file used in the tutorial. The notebook file is automatically run and converted into a static HTML page (`example <http://tutorials.astropy.org/FITS-header.html>`_), which is then displayed in the tutorial listing on http://tutorials.astropy.org.
 
 Procedure
 ---------
 
-_If you are unfamiliar with git, you should first get familiar with git and github. There are a number of resources available for learning git, but a good place to start is with the [github interactive tutorial](http://try.github.io/). You should also get familiar with using pull requests and forks on github: https://help.github.com/articles/using-pull-requests _
+_If you are unfamiliar with git, you should first get familiar with git and github. There are a number of resources available for learning git, but a good place to start is with the `github interactive tutorial <http://try.github.io/>`_. You should also get familiar with using pull requests and forks on github: https://help.github.com/articles/using-pull-requests _
 
 To create and contribute a new tutorial, you will first need to fork the astropy-tutorials repository on github and clone this fork locally to your machine (_replace <GITHUB USERNAME> with your github username):
 
